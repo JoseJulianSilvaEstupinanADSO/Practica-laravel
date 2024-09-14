@@ -5,19 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Cursos extends Model
+class Evaluacion extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'doc_instructor',
-        'title',
-        'body',
-        'status'
+        'nota',
+        'estado',
+        'doc_usuario',
+        'curso_id'
     ];
 
     protected $hidden = [
-        'doc_instructor'
+        'doc_usuario',
     ];
 }
