@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('subscripcion_to_user', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('documento')->on('users')->nullOnDelete();
+            $table->foreign('user_id')->references('id')->on('users')->nullOnDelete();
             $table->unsignedBigInteger('subscripcion_id')->nullable();
             $table->foreign('subscripcion_id')->references('id')->on('subscripciones')->nullOnDelete(); 
         });

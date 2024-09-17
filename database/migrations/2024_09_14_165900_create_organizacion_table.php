@@ -20,6 +20,10 @@ return new class extends Migration
             $table->foreign('curso_id')->references('id')->on('cursos')->nullOnDelete();
             $table->timestamps();
         });
+        Schema::table('users', function (Blueprint $table) {
+            $table->unsignedBigInteger('rol_id')->nullable();
+            $table->foreign('rol_id')->references('id')->on('roles')->nullOnDelete();
+        });
     }
 
     /**
