@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('facturas', function (Blueprint $table) {
+        Schema::create('plan_to_user', function (Blueprint $table) {
             $table->id();
-            $table->double('total');
             $table->unsignedBigInteger('plan_id')->nullable();
-            $table->foreign('plan_id')->references('id')->on('plans')->nullOnDelete();
-            $table->unsignedBigInteger('doc_user')->nullable();
+            $table->foreign('plan_id')->references('id')->on('plans');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->double('max_suscripciones')->default(0);
+            $table->double('cant')->default(0);
             $table->timestamps();
         });
     }
@@ -26,6 +28,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('facturas');
+        Schema::table('plan_to_user', function (Blueprint $table) {
+            //
+        });
     }
 };

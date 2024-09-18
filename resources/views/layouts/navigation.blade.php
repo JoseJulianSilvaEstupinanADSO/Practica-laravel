@@ -21,6 +21,16 @@
                         {{ __('Users') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('roles.index')" :active="request()->routeIs('roles.*')">
+                        {{ __('Roles') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('plans.index')" :active="request()->routeIs('plans.*')">
+                        {{ __('Planes') }}
+                    </x-nav-link>
+                </div>
             </div>
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">

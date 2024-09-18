@@ -3,6 +3,7 @@
 
 <div>
     <a href="{{ route('roles.create') }}">Nuevo Rol</a>
+    <a href="{{ route('permissions.index') }}">Permisos</a>
     <table border="">
         <thead>
             <th>ID</th>

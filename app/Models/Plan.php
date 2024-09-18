@@ -14,4 +14,8 @@ class Plan extends Model
         'precio',
         'body'
     ];
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'plan_to_user');
+    }
 }

@@ -2,6 +2,7 @@
 @include("layouts.navigation")
 
 <div>
+    <a href=" {{route('permissions.create')}} ">Nuevo permiso</a>
     <table border="">
         <thead>
             <th>Nombre</th>

@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('curso_id')->nullable();
             $table->foreign('curso_id')->references('id')->on('cursos')->nullOnDelete();
-            $table->unsignedBigInteger('factura_id')->nullable();
-            $table->foreign('factura_id')->references('id')->on('facturas')->nullOnDelete();
             $table->timestamps();
         });
     }

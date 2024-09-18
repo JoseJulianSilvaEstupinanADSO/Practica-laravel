@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\BuyplanController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -23,14 +25,12 @@ Route::middleware('auth')->group(function () {
 Route::resource('users', UserController::class)->except(['show', 'create', 'store'])->names('users');
 Route::resource('permissions', PermissionController::class)->except('show')->names('permissions');
 Route::resource('roles', RoleController::class)->except('show')->names('roles');
-// Route::prefix('users')->group(function () {
-//     Route::get('/', [UserController::class, "index"])->name("users.index");
-//     // Route::get('/create', [UserController::class, "create"])->name("users.create");
-//     // Route::post('/store', [UserController::class, "store"])->name("users.store");
-//     // Route::get("/edit/{id}", [UserController::class, "edit"])->name("users.edit");
-//     // Route::post("/update/{id}", [UserController::class, "update"])->name("users.update");
-//     // Route::post("/destroy/{id}", [UserController::class, "destroy"])->name("users.destroy");
-//     // Route::get("/{id}/posts", [UserController::class, "posts"])->name("users.posts");
-//   });
+Route::resource('plans', PlanController::class)->except('show')->names('plans');
+Route::resource('compras', BuyplanController::class)->except('show')->names('compras');
+
+Route::prefix('plans')->group(function () {
+    Route::post('/buyplan', [PlanController::class, "buyplan"])->name("plans.buyplan");
+
+});
 
 require __DIR__.'/auth.php';
