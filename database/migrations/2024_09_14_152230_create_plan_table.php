@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->double('precio');
             $table->text('body');
+            $table->text('cant_subs')->nullable();
             $table->timestamps();
         });
     }

@@ -14,5 +14,10 @@
     @error('body')
         {{ $message }}
     @enderror
+    {{ html()->label('cant_subs') }}
+    {{ html()->text('cant_subs') }}
+    @error('cant_subs')
+        {{ $message }}
+    @enderror
     
 </div>

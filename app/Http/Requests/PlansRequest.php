@@ -24,7 +24,8 @@ class PlansRequest extends FormRequest
         return [
             'name' => 'required',
             'precio' => 'required',
-            'body' => 'required'
+            'body' => 'required',
+            'cant_subs' => 'required'
         ];
         
     }
@@ -33,7 +34,8 @@ class PlansRequest extends FormRequest
         return [
             'name.required' => 'Favor ingrese el nombre del plan',
             'precio.required' => 'Favor ingrese el precio del plan',
-            'body.required' => 'Favor ingrese una breve descripcion del plan'
+            'body.required' => 'Favor ingrese una breve descripcion del plan',
+            'cant_subs.required' => 'Favor ingre la cantidad de subscripciones del plan'
         ];
     }
 }

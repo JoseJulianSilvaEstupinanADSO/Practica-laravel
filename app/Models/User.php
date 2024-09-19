@@ -35,8 +35,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    public function plans()
+    public function plan()
     {
-        return $this->belongsToMany(Plan::class, 'plan_to_user');
+        return $this->belongsToMany(Plan::class, 'plan_to_user')
+                    ->withPivot('cant_suscripciones')
+                    ->withTimestamps();
     }
 }

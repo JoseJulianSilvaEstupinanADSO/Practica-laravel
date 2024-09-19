@@ -12,10 +12,13 @@ class Plan extends Model
     protected $fillable = [
         'name',
         'precio',
-        'body'
+        'body',
+        'cant_subs'
     ];
     public function users()
     {
-        return $this->belongsToMany(User::class, 'plan_to_user');
+        return $this->belongsToMany(User::class, 'plan_to_user')
+                    ->withPivot('cant_suscripciones')
+                    ->withTimestamps();
     }
 }

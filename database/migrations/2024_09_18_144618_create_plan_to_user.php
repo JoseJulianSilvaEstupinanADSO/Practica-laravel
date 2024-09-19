@@ -17,8 +17,7 @@ return new class extends Migration
             $table->foreign('plan_id')->references('id')->on('plans');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->double('max_suscripciones')->default(0);
-            $table->double('cant')->default(0);
+            $table->integer('cant_suscripciones')->default(0);
             $table->timestamps();
         });
     }
