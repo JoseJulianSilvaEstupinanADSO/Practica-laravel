@@ -25,4 +25,5 @@ class PermissionRequest extends FormRequest
             'name' => 'required'
         ];
     }
+    
 }

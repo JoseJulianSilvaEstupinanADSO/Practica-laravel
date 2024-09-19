@@ -10,7 +10,10 @@ class Subscripcion extends Model
     use HasFactory;
 
     protected $fillable = [
-        'curso_id',
-        'fatcura_id'
+        'curso_id'
     ];
+    public function subs()
+    {
+        return $this->belongsToMany(User::class, 'subscripcion_to_user');
+    }
 }

@@ -1,7 +1,7 @@
 <div>
-    {{ html()->form()->route('cursos.store')->open() }}
+    {{ html()->form()->route('organizations.store')->open() }}
 
-        @include('cursos.partials.form')
+        @include('organizations.partials.form')
 
         <button type="submit" class="btn btn-outline-dark">Crear</button>
 

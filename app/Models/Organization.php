@@ -5,14 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Organizacion extends Model
+class Organization extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
         'direccion',
-        'telefono',
-        'curso_id'
+        'telefono'
     ];
+    public function curso()
+    {
+        return $this->belongsToMany(Curso::class, 'organizacion_to_curso')
+                    ->withTimestamps();
+    }
 }
+

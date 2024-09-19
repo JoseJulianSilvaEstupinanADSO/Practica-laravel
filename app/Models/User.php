@@ -18,9 +18,7 @@ class User extends Authenticatable
         'email',
         'password',
         'telefono',
-        'username
-        
-        '
+        'username'
     ];
 
     protected $hidden = [
@@ -41,4 +39,9 @@ class User extends Authenticatable
                     ->withPivot('cant_suscripciones')
                     ->withTimestamps();
     }
+    public function subs()
+    {
+        return $this->belongsToMany(Subscripcion::class, 'subscripcion_to_user');
+    }
 }
+

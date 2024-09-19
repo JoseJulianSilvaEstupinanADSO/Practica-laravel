@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('subscripcion_to_plan', function (Blueprint $table) {
+        Schema::create('subscripcion_to_user', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('plan_id')->nullable();
-            $table->foreign('plan_id')->references('id')->on('plans')->nullOnDelete();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->nullOnDelete();
             $table->unsignedBigInteger('subscripcion_id')->nullable();
-            $table->foreign('subscripcion_id')->references('id')->on('subscripciones')->nullOnDelete(); 
+            $table->foreign('subscripcion_id')->references('id')->on('subscripcions')->nullOnDelete(); 
         });
     }
 

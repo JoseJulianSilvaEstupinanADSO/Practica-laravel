@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->double('total');
             $table->unsignedBigInteger('plan_id')->nullable();
-            $table->foreign('plan_id')->references('id')->on('plans')->nullOnDelete();
-            $table->unsignedBigInteger('doc_user')->nullable();
+            $table->text('nombre_plan')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->nullOnDelete();
             $table->timestamps();
         });
     }
