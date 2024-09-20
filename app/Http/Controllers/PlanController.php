@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PlansRequest;
+use App\Models\Factura;
 use App\Models\Plan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Pest\ArchPresets\Strict;
 
 class PlanController extends Controller
 {
@@ -72,16 +74,40 @@ class PlanController extends Controller
 
     public function buyplan(Request $request)
     {
+
         $plan = Plan::where('id', $request->id)->first();
         $user = Auth::id();
-        // $user_subs = User::where('id', $user)->first();
-        // $compra = $user_subs->plan()->where('plan_id', $plan->id)->first();
-        // dd($compra);
-        // if ($plan->cant_subs >= $compra) {
-        //     $compra;
-        // }
-        // dd($compra);
+        $user_com = User::where('id', $user)->first();
+
+        $fac = true;
+        $plan_act = $user_com->plan;
+        if ($plan_act) {
+            foreach ($plan_act as $key => $value) {
+                if ($value->id !== $plan->id) {
+                    $user_com->plan()->detach($value->id);
+                    // dd($plan_act);
+                }
+                else{
+                    $fac = false;
+                }
+            }
+        }
         $plan->users()->sync($user);
+        if ($fac) {
+            
+            $factura = $this->Gen_factura($plan, $user);
+        }
         return redirect()->route('plans.index');
+    }
+    public function Gen_factura( $plan, string $id)
+    {
+        // dd($plan);
+        $factura = Factura::create([
+            'total' => $plan->precio,
+            'plan_id' => $plan->id,
+            'nombre_plan' => $plan->name,
+            'user_id' => $id,
+        ]);
+        return $factura;
     }
 }

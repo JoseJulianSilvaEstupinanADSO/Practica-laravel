@@ -10,8 +10,9 @@ class Factura extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
         'total',
-        'plan_id'
+        'plan_id',
+        'nombre_plan',
+        'user_id'
     ];
 }
