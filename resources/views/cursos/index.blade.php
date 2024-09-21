@@ -13,6 +13,7 @@
             <th>Organizacion</th>
             <th>Acciones</th>
             <th>Comprar</th>
+            <th>Modulos</th>
         </thead>
         <tbody>
             @foreach ($cursos as $curso )
@@ -48,6 +49,12 @@
                             <button type="submit" class="btn btn-outline-dark">Comprar</button>
 
                         {{ html()->form()->close() }}
+                    </td>
+                    <td> 
+                        <a 
+                            href="{{ route('modulos.index', $curso->id) }}">
+                            Ver
+                        </a>
                     </td>
                 </tr>
                    

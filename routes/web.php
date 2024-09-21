@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CursosController;
+use App\Http\Controllers\ModuloController;
 use App\Http\Controllers\OrganizationsController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PlanController;
@@ -29,6 +30,7 @@ Route::resource('roles', RoleController::class)->except('show')->names('roles');
 Route::resource('plans', PlanController::class)->except('show')->names('plans');
 Route::resource('organizations', OrganizationsController::class)->except('show')->names('organizations');
 Route::resource('cursos', CursosController::class)->except('show')->names('cursos');
+Route::resource('modulos', ModuloController::class)->except('show')->names('modulos');
 
 Route::prefix('plans')->group(function () {
     Route::post('/buyplan', [PlanController::class, "buyplan"])->name("plans.buyplan");
