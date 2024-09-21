@@ -19,6 +19,7 @@ class RoleSeeder extends Seeder
         $admin = Role::create(['name' => 'Administrador']);
         $instructor = Role::create(['name' => 'Instructor']);
         $estudiante = Role::create(['name' => 'Estudiante']);
+        $visitante = Role::create(['name' => 'Visitante']);
 
         Permission::create([
             'name'        => 'users.index',
@@ -63,7 +64,7 @@ class RoleSeeder extends Seeder
         Permission::create([
             'name'        => 'cursos.index',
             'description' => 'Listar cursos'
-          ])->syncRoles([$admin, $estudiante]);
+          ])->syncRoles([$admin, $estudiante, $visitante]);
         Permission::create([
             'name'        => 'cursos.edit',
             'description' => 'Editar Cursos'
@@ -103,7 +104,6 @@ class RoleSeeder extends Seeder
         Permission::create([
             'name'        => 'plans.index',
             'description' => 'Listar planes'
-          ])->syncRoles([$admin]);
-
+          ])->syncRoles([$admin, $visitante]);
     }
 }

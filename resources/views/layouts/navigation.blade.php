@@ -32,13 +32,13 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('organizations.index')" :active="request()->routeIs('organizations.*')">
-                        {{ __('organizations') }}
+                    <x-nav-link :href="route('cursos.index')" :active="request()->routeIs('cursos.*')">
+                        {{ __('cursos') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('cursos.index')" :active="request()->routeIs('cursos.*')">
-                        {{ __('cursos') }}
+                    <x-nav-link :href="route('organizations.index')" :active="request()->routeIs('organizations.*')">
+                        {{ __('organizations') }}
                     </x-nav-link>
                 </div>
             </div>
