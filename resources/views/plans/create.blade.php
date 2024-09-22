@@ -5,11 +5,11 @@
 <div class="w-creen flex flex-col justify-center items-center">
     <div class="w-1/2 flex-1 flex-col gap-4 p-4">
         {{ html()->form()->route('plans.store')->open() }}
-    
-            @include('plans.partials.form')
-    
-            <button type="submit" class="btn btn-outline-dark">Crear</button>
-    
+            <div class="w-full">
+                @include('plans.partials.form')
+                <button type="submit" class="btn btn-sm btn-success w-full">Crear</button>
+            </div>
         {{ html()->form()->close() }}
+        <a href="{{ route('plans.index') }}" class="btn btn-sm w-full">Listado de planes</a>
     </div>
 </div>

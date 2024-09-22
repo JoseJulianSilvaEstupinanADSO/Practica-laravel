@@ -8,7 +8,7 @@
         </h1>
     </div>
     <div class="p-8 rounded-xl my-6 w-11/12">
-        <table border="" class="w-full text-center table-zebra text-xs">
+        <table class="w-full text-center table-zebra text-xs">
             <thead>
                 <th>Nombre</th>
                 <th>Documento</th>
@@ -28,7 +28,7 @@
                         <td class="flex items-center justify-center">
                             {{ html()->modelForm($user, 'POST', 'users.edit')->open() }}
                                 {{ html()->hidden('id')->value($user->id) }}
-                                <button type="submit" class="btn btn-xs">Editar</button>
+                                <button type="submit" class="btn btn-xs w-full">Editar</button>
                             {{ html()->closeModelForm() }}
                         </td>
                     </tr>

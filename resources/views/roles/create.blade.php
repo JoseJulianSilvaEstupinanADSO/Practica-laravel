@@ -4,12 +4,13 @@
 <div class="w-screen flex flex-col justify-center items-center">
     <div class="w-1/2 flex flex-col gap-4 p-4">
         {{ html()->form()->route('roles.store')->open() }}
-    
+
             <div class="flex flex-col gap-2 justify-center">
                 @include('roles.partials.form')
-                    <button type="submit" class="btn btn-sm btn-success text-white w-1/2">Crear <i class="fa-solid fa-plus"></i></button>
+                <button type="submit" class="btn btn-sm btn-success text-white w-full">Crear <i class="fa-solid fa-plus"></i></button>
+                <a href="{{ route('roles.index') }}" class="w-full btn btn-sm">Listar roles</a>
             </div>
-    
+
         {{ html()->form()->close() }}
     </div>
 </div>

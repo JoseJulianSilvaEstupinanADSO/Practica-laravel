@@ -1,6 +1,7 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
 import laravel from 'laravel-vite-plugin';
+import theme from 'tailwindcss/defaultTheme';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -16,6 +17,11 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
         },
+    },
+
+    // Configuracion para el daisy ui
+    daisyui: {
+        themes: ['light'],
     },
 
     plugins: [forms, require('daisyui') ],

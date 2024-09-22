@@ -10,43 +10,35 @@
     </div>
     <div class="w-1/2 flex flex-col p-4">
         <div class="p-4 w-full flex justify-end gap-4">
-            <a href=" {{route('plans.create')}} " class="btn">Crear plan</a>
+            <a href=" {{route('plans.create')}} " class="btn btn-sm">Crear plan <i class="fa-brands fa-bitcoin"></i></a>
         </div>
-        <table class="table-zebra">
+        <table class="w-full table-zebra text-center text-xs">
             <thead>
                 <th>Nombre</th>
                 <th>Precio</th>
                 <th>Descripcion</th>
+                <th>Cantidad</th>
                 <th>Acciones</th>
-                <th>Comprar</th>
             </thead>
             <tbody>
                 @foreach ($plans as $plan)
                     <tr>
                         <td> {{$plan->name}} </td>
                         <td> {{$plan->precio}} </td>
-                        <td> {{$plan->body}} </td>
-                        <td> 
-                            <a 
-                                href="{{ route('plans.edit', $plan->id) }}">
-                                Editar
-                            </a>
-                        </td>
+                        <td class="truncate"> {{$plan->body}} </td>
+                        <td> {{$plan->cant_subs}} </td>
                         <td>
-                            {{ html()->modelForm($plan, 'DELETE')->route('plans.destroy', $plan->id)->open() }}
-                                <button class="btn btn-outline-danger delete">
-                                    Eliminar
-                                </button>
-                            {{ html()->closeModelForm() }}
-                        </td>
-                        <td>
-                            {{ html()->form()->route('plans.buyplan')->open() }}
-    
-                                {{ html()->hidden('id')->value($plan->id) }}
-    
-                                <button type="submit" class="btn btn-outline-dark">Comprar</button>
-    
-                            {{ html()->form()->close() }}
+                            <div class="flex flex-col gap-2">
+                                <a
+                                    href="{{ route('plans.edit', $plan->id) }}" class="btn btn-xs w-full">
+                                    Editar
+                                </a>
+                                {{ html()->modelForm($plan, 'DELETE')->route('plans.destroy', $plan->id)->open() }}
+                                    <button class="btn btn-error btn-xs w-full">
+                                        Eliminar
+                                    </button>
+                                {{ html()->closeModelForm() }}
+                            </div>
                         </td>
                     </tr>
                 @endforeach
