@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Hamcrest\Description;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
@@ -10,100 +11,88 @@ use Spatie\Permission\Models\Permission;
 class RoleSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Correr migraciones de las seeders
      */
     public function run(): void
     {
+        // Roles a utilizar
         $super = Role::create(['name' => 'SuperAdmin']);
         $organizador = Role::create(['name' => 'Organizacion']);
-        $admin = Role::create(['name' => 'Administrador']);
-        $instructor = Role::create(['name' => 'Instructor']);
         $estudiante = Role::create(['name' => 'Estudiante']);
         $visitante = Role::create(['name' => 'Visitante']);
 
+        // Permisos del Super administrador para usuarios
         Permission::create([
-            'name'        => 'users.index',
+            'name' => 'users.index',
             'description' => 'Listar usuarios'
-          ])->syncRoles([$admin]);
+        ])->syncRoles([$super]);
         Permission::create([
-            'name'        => 'users.edit',
+            'name' => 'users.edit',
             'description' => 'Editar usuarios'
-          ])->syncRoles([$admin]);
+        ])->syncRoles([$super]);
         Permission::create([
-            'name'        => 'roles.index',
+            'name' => 'users.destroy',
+            'description' => 'Eliminar usuarios'
+        ])->syncRoles([$super]);
+
+        // Permisos del super administrador para roles
+        Permission::create([
+            'name' => 'roles.index',
             'description' => 'Listar roles'
-          ])->syncRoles([$admin]);
+        ])->syncRoles([$super]);
         Permission::create([
-            'name'        => 'roles.create',
+            'name' => 'roles.create',
             'description' => 'Crear roles'
-          ])->syncRoles([$admin]);
+        ])->syncRoles([$super]);
         Permission::create([
-            'name'        => 'roles.edit',
+            'name' => 'roles.edit',
             'description' => 'Editar roles'
-          ])->syncRoles([$admin]);
+        ])->syncRoles([$super]);
         Permission::create([
-            'name'        => 'roles.destroy',
+            'name' => 'roles.destroy',
             'description' => 'Eliminar roles'
-          ])->syncRoles([$admin]);
+        ])->syncRoles([$super]);
+
+        // Permisos del super administrador para permisos
         Permission::create([
-            'name'        => 'permissions.index',
-            'description' => 'Listar Permisos'
-          ])->syncRoles([$admin]);
+            'name' => 'permissions.index',
+            'description' => 'Listar permisos'
+        ])->syncRoles([$super]);
         Permission::create([
-            'name'        => 'permissions.create',
+            'name' => 'permissions.create',
             'description' => 'Crear permisos'
-          ])->syncRoles([$admin]);
+        ])->syncRoles($super);
         Permission::create([
-            'name'        => 'permissions.edit',
+            'name' => 'permissions.edit',
             'description' => 'Editar permisos'
-          ])->syncRoles([$admin]);
+        ])->syncRoles([$super]);
         Permission::create([
-            'name'        => 'permissions.destroy',
+            'name' => 'permissions.destroy',
             'description' => 'Eliminar permisos'
-          ])->syncRoles([$admin]);
+        ])->syncRoles($super);
+
+        // Permisos del super administrador para cursos
         Permission::create([
-            'name'        => 'cursos.index',
+            'name' => 'cursos.index',
             'description' => 'Listar cursos'
-          ])->syncRoles([$admin, $estudiante, $visitante]);
+        ])->syncRoles([$super, $visitante, $estudiante]);
+
+        // Permisos para, superadmin, visitante, estudiante y organizador
         Permission::create([
-            'name'        => 'cursos.edit',
-            'description' => 'Editar Cursos'
-          ])->syncRoles([$admin, $organizador]);
-        Permission::create([
-            'name'        => 'cursos.create',
-            'description' => 'Crear curso'
-          ])->syncRoles([$admin,$organizador]);
-        Permission::create([
-            'name'        => 'cursos.destroy',
-            'description' => 'Eliminar curso'
-          ])->syncRoles([$admin, $organizador]);
-        Permission::create([
-            'name'        => 'facturas.index',
-            'description' => 'Listar facturas'
-          ])->syncRoles([$admin, $estudiante]);
-        Permission::create([
-            'name'        => 'organizations.index',
-            'description' => 'Listar organizations'
-          ])->syncRoles([$admin]);
-        Permission::create([
-            'name'        => 'organizations.create',
-            'description' => 'Crear organizations'
-          ])->syncRoles([$admin]);
-        Permission::create([
-            'name'        => 'organizations.edit',
-            'description' => 'Editar organizations'
-          ])->syncRoles([$admin, $organizador]);
-        Permission::create([
-            'name'        => 'plans.create',
-            'description' => 'Crear plan'
-          ])->syncRoles([$admin]);
-        Permission::create([
-            'name'        => 'plans.edit',
-            'description' => 'Editar plan'
-          ])->syncRoles([$admin]);
-        Permission::create([
-            'name'        => 'plans.index',
+            'name' => 'plans.index',
             'description' => 'Listar planes'
-          ])->syncRoles([$admin, $visitante]);
+        ])->syncRoles($super, $visitante, $estudiante, $organizador);
+        Permission::create([
+            'name' => 'plans.create',
+            'description' => 'Crear planes'
+        ])->syncRoles([$super, $organizador]);
+        Permission::create([
+            'name' => 'plans.edit',
+            'description' => 'Editar planes'
+        ])->syncRoles([$super, $organizador]);
+        Permission::create([
+            'name' => 'plans.destroy',
+            'description' => 'Eliminar planes'
+        ])->syncRoles([$super, $organizador]);
     }
 }
