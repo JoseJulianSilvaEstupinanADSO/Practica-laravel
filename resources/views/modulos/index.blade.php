@@ -1,12 +1,12 @@
 <div>
-    <a href=" {{ route('modulos.create') }} ">Crear modulo</a>
+    <a href=" {{ route('modulos.create', $curso->id) }} ">Crear modulo</a>
     <table border="">
         <thead>
             <th>ID</th>
             <th>Nombre</th>
         </thead>
         <tbody>
-            {{-- @foreach ($modulos as $modulo )
+            @foreach ($modulos as $modulo )
                 <tr>
                     <td>{{$modulo->id}}</td>
                     <td>{{$modulo->name}}</td>
@@ -25,7 +25,7 @@
                     </td>
                 </tr>
                    
-            @endforeach --}}
+            @endforeach
         </tbody>
     </table>
 </div>

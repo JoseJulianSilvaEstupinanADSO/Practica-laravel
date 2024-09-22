@@ -9,7 +9,7 @@
     @error('body')
         {{ $message }}
     @enderror
-    {{ html()->hidden('curso_id') }}
+    {{ html()->hidden('curso_id')->value($curso->id) }}
     @error('curso_id')
         {{ $message }}
     @enderror

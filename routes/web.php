@@ -30,7 +30,14 @@ Route::resource('roles', RoleController::class)->except('show')->names('roles');
 Route::resource('plans', PlanController::class)->except('show')->names('plans');
 Route::resource('organizations', OrganizationsController::class)->except('show')->names('organizations');
 Route::resource('cursos', CursosController::class)->except('show')->names('cursos');
-Route::resource('modulos', ModuloController::class)->except('show')->names('modulos');
+Route::resource('modulos', ModuloController::class)->except(['show', 'create', 'index'])->names('modulos');
+
+Route::prefix('modulos')->group(function () {
+    Route::get('/index/{curso}', [ModuloController::class, "index"])->name("modulos.index");
+    Route::get('/create/{curso}', [ModuloController::class, "create"])->name("modulos.create");
+
+});
+
 
 Route::prefix('plans')->group(function () {
     Route::post('/buyplan', [PlanController::class, "buyplan"])->name("plans.buyplan");

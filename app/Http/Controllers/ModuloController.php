@@ -14,16 +14,16 @@ class ModuloController extends Controller
      */
     public function index(Curso $curso)
     {
-        dd($curso->id);
-        return view('modulos.index', compact('curso'));
+        $modulos = Modulo::where('curso_id', $curso->id)->get();
+        return view('modulos.index', compact('curso', 'modulos'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Curso $curso)
     {
-        return view('modulos.create');
+        return view('modulos.create', compact('curso'));
     }
 
     /**
@@ -32,7 +32,8 @@ class ModuloController extends Controller
     public function store(ModuloRequest $request)
     {
         $modulo = Modulo::create($request->all());
-        return redirect()->route('modulos.index');
+        $curso = Curso::where('id', $modulo->curso_id)->first();
+        return redirect()->route('modulos.index', compact('curso'));
     }
 
     /**
@@ -48,7 +49,8 @@ class ModuloController extends Controller
      */
     public function edit(Modulo $modulo)
     {
-        return view('modulos.edit');
+        $curso = Curso::where('id', $modulo->curso_id)->first();
+        return view('modulos.edit', compact('modulo', 'curso'));
     }
 
     /**
@@ -57,14 +59,17 @@ class ModuloController extends Controller
     public function update(ModuloRequest $request, Modulo $modulo)
     {
         $modulo->update($request->all());
-        return redirect()->route('modulos.index');
+        $curso = Curso::where('id', $modulo->curso_id)->first();
+        return redirect()->route('modulos.index', compact('curso'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Modulo $modulo)
     {
-        //
+        $curso = Curso::where('id', $modulo->curso_id)->first();
+        $modulo->delete();
+        return redirect()->route('modulos.index', compact('curso'));
     }
 }
