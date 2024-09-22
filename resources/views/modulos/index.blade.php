@@ -4,6 +4,7 @@
         <thead>
             <th>ID</th>
             <th>Nombre</th>
+            <th>ver</th>
         </thead>
         <tbody>
             @foreach ($modulos as $modulo )
@@ -22,6 +23,12 @@
                                 Eliminar
                             </button>
                         {{ html()->closeModelForm() }}
+                    </td>
+                    <td> 
+                        <a 
+                            href="{{ route('contenidos.index', $modulo->id) }}">
+                            ver
+                        </a>
                     </td>
                 </tr>
                    

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContenidoController;
 use App\Http\Controllers\CursosController;
 use App\Http\Controllers\ModuloController;
 use App\Http\Controllers\OrganizationsController;
@@ -30,11 +31,19 @@ Route::resource('roles', RoleController::class)->except('show')->names('roles');
 Route::resource('plans', PlanController::class)->except('show')->names('plans');
 Route::resource('organizations', OrganizationsController::class)->except('show')->names('organizations');
 Route::resource('cursos', CursosController::class)->except('show')->names('cursos');
+
 Route::resource('modulos', ModuloController::class)->except(['show', 'create', 'index'])->names('modulos');
 
 Route::prefix('modulos')->group(function () {
     Route::get('/index/{curso}', [ModuloController::class, "index"])->name("modulos.index");
     Route::get('/create/{curso}', [ModuloController::class, "create"])->name("modulos.create");
+
+});
+Route::resource('contenidos', ContenidoController::class)->except(['show', 'create', 'index'])->names('contenidos');
+
+Route::prefix('contenidos')->group(function () {
+    Route::get('/index/{modulo}', [ContenidoController::class, "index"])->name("contenidos.index");
+    Route::get('/create/{modulo}', [ContenidoController::class, "create"])->name("contenidos.create");
 
 });
 

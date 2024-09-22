@@ -19,7 +19,7 @@
         1 => 'Activo',
         0  => 'Inactivo'
     ])->placeholder("Seleccion ...") }}
-    @error('body')
+    @error('status')
         {{ $message }}
     @enderror
     {{ html()->label('organization') }}
